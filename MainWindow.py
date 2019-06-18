@@ -67,7 +67,7 @@ class MainWindow(QWidget):
         '''
         # create groupbox
         self.selectGroupBox = QGroupBox("Select File")
-        self.selectGroupBox.setFixedHeight(50)
+        self.selectGroupBox.setFixedHeight(80)
         # create widgets
         self.selectButton = QPushButton('Select a file')
         # widgets connect
@@ -102,6 +102,7 @@ class MainWindow(QWidget):
         viewButtonsLayout = QVBoxLayout()
         viewButtonsLayout.addWidget(self.lastButton)
         viewButtonsLayout.addWidget(self.nextButton)
+        viewButtonsLayout.addWidget(self.levelLabel)
         viewLayout.addLayout(viewButtonsLayout)
         self.viewGroupBox.setLayout(viewLayout)
         # self.viewLabel = QLabel("View:o")
@@ -120,6 +121,8 @@ class MainWindow(QWidget):
         # iconLayout.addStretch()
         # iconLayout.addWidget(self.showIconCheckBox)
         # self.iconGroupBox.setLayout(iconLayout)    
+    def update_level_label(self):
+        self.levelLabel.setText('level:'+str(self.dataFrame.index))
 
     def selectButtonClicked(self):
         fileName1, filetype = QFileDialog.getOpenFileName(self,"选取Numpy矩阵文件","C:\\Users\\Administrator.000\\Desktop\\NumpyViewer","All Files (*);;Text Files (*.txt);;Numpy Files (*.npy)")   #设置文件扩展名过滤,注意用双分号间隔
@@ -129,10 +132,11 @@ class MainWindow(QWidget):
         # draw something
         # self.viewPlot = self.static_canvas.figure.subplots()
         self.dataFrame.ShowInPlot(self.viewPlot)
+        self.update_level_label()
         # height, width= self.dataFrame.dataArray[0].shape
         # self.viewBox.setPixmap(QPixmap())
-        print(fileName1)
-        print(filetype)
+        # print(fileName1)
+        # print(filetype)
 
     def nextButtonClicked(self):
         if(self.dataFrame.index+1 >= self.dataFrame.dataArray.shape[0]):
@@ -140,6 +144,7 @@ class MainWindow(QWidget):
         else:
             self.dataFrame.index = self.dataFrame.index + 1
         self.dataFrame.ShowInPlot(self.viewPlot)
+        self.update_level_label()
 
     def lastButtonClicked(self):
         if(self.dataFrame.index-1 < 0):
@@ -147,6 +152,7 @@ class MainWindow(QWidget):
         else:
             self.dataFrame.index = self.dataFrame.index - 1
         self.dataFrame.ShowInPlot(self.viewPlot)
+        self.update_level_label()
 
     def msg(self):
         directory1 = QFileDialog.getExistingDirectory(self,
