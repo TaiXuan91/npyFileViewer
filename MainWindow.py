@@ -125,7 +125,7 @@ class MainWindow(QWidget):
         self.levelLabel.setText('level:'+str(self.dataFrame.index))
 
     def selectButtonClicked(self):
-        fileName1, filetype = QFileDialog.getOpenFileName(self,"选取Numpy矩阵文件","./","All Files (*);;Text Files (*.txt);;Numpy Files (*.npy)")   #设置文件扩展名过滤,注意用双分号间隔
+        fileName1, filetype = QFileDialog.getOpenFileName(self,"选取Numpy矩阵文件","./","Numpy Files (*.npy)")   #设置文件扩展名过滤,注意用双分号间隔
         if fileName1 is not None and fileName1!='':
             self.dataFrame.path = fileName1
             self.dataFrame.ReadFile()
@@ -155,25 +155,25 @@ class MainWindow(QWidget):
         self.dataFrame.ShowInPlot(self.viewPlot)
         self.update_level_label()
 
-    def msg(self):
-        directory1 = QFileDialog.getExistingDirectory(self,
-                                    "选取文件夹",
-                                    "C:/")                                 #起始路径
-        print(directory1)
+    # def msg(self):
+    #     directory1 = QFileDialog.getExistingDirectory(self,
+    #                                 "选取文件夹",
+    #                                 "C:/")                                 #起始路径
+    #     print(directory1)
  
-        fileName1, filetype = QFileDialog.getOpenFileName(self,
-                                    "选取文件",
-                                    "C:/",
-                                    "All Files (*);;Text Files (*.txt)")   #设置文件扩展名过滤,注意用双分号间隔
-        print(fileName1,filetype)
+    #     fileName1, filetype = QFileDialog.getOpenFileName(self,
+    #                                 "选取文件",
+    #                                 "C:/",
+    #                                 "All Files (*);;Text Files (*.txt)")   #设置文件扩展名过滤,注意用双分号间隔
+    #     print(fileName1,filetype)
  
-        files, ok1 = QFileDialog.getOpenFileNames(self,
-                                    "多文件选择",
-                                    "C:/",
-                                    "All Files (*);;Text Files (*.txt)")
-        print(files,ok1)
+    #     files, ok1 = QFileDialog.getOpenFileNames(self,
+    #                                 "多文件选择",
+    #                                 "C:/",
+    #                                 "All Files (*);;Text Files (*.txt)")
+    #     print(files,ok1)
  
-        fileName2, ok2 = QFileDialog.getSaveFileName(self,
-                                    "文件保存",
-                                    "C:/",
-                                    "All Files (*);;Text Files (*.txt)")
+    #     fileName2, ok2 = QFileDialog.getSaveFileName(self,
+    #                                 "文件保存",
+    #                                 "C:/",
+    #                                 "All Files (*);;Text Files (*.txt)")
