@@ -125,14 +125,15 @@ class MainWindow(QWidget):
         self.levelLabel.setText('level:'+str(self.dataFrame.index))
 
     def selectButtonClicked(self):
-        fileName1, filetype = QFileDialog.getOpenFileName(self,"选取Numpy矩阵文件","C:\\Users\\Administrator.000\\Desktop\\NumpyViewer","All Files (*);;Text Files (*.txt);;Numpy Files (*.npy)")   #设置文件扩展名过滤,注意用双分号间隔
-        self.dataFrame.path = fileName1
-        self.dataFrame.ReadFile()
-        self.dataFrame.index = 0
+        fileName1, filetype = QFileDialog.getOpenFileName(self,"选取Numpy矩阵文件","./","All Files (*);;Text Files (*.txt);;Numpy Files (*.npy)")   #设置文件扩展名过滤,注意用双分号间隔
+        if fileName1 is not None and fileName1!='':
+            self.dataFrame.path = fileName1
+            self.dataFrame.ReadFile()
+            self.dataFrame.index = 0
+            self.dataFrame.ShowInPlot(self.viewPlot)
+            self.update_level_label()
         # draw something
         # self.viewPlot = self.static_canvas.figure.subplots()
-        self.dataFrame.ShowInPlot(self.viewPlot)
-        self.update_level_label()
         # height, width= self.dataFrame.dataArray[0].shape
         # self.viewBox.setPixmap(QPixmap())
         # print(fileName1)
